@@ -2,7 +2,7 @@
     
     class agenda {
 
-        private $url_agenda = "http://localhost/proy2.1/api/actividades";
+        private $url_agenda = "http://localhost/proyecto2/api/actividades/";
         protected $id;
         protected $titulo;
         protected $texto;
@@ -13,15 +13,17 @@
 
 
         public function listar_notas(){
-            $ruta = $this->url_agenda . 'listar.php';
+            $ruta = $this->url_agenda.'listar.php';
             $data = json_decode(file_get_contents($ruta),true);
             $result = $data["records"];
+
             return $result;
 
         }
         
         public function ver_nota(){
-            $ruta = $this->url_agenda . 'leer.php?id=';
+            $ruta = $this->url_agenda.'leer.php?id=48';
+            
             $data = json_decode(file_get_contents($ruta),true);
             $result = $data["records"];
             return $result;

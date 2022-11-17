@@ -32,6 +32,7 @@ if($num>0){
              "tipo_actividad" => $tipo_actividad, 
              "titulo" => $titulo, 
             "texto" => $texto, 
+            "rango" => $rango, 
              "fecha" => $fecha
         );  
   

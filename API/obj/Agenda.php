@@ -21,14 +21,10 @@
         }
         
         function ver_nota($id){
-            
-            $query = "CALL sp_leer('".$id."')";
+            $query = "CALL sp_leer('?')";
             $stmt = $this->conn->prepare($query);
-            // ID de enlace del producto a actualizar
-            $stmt->bindParam(1, $this->id);
-            // ejecutar consulta
+            $stmt->bindParam(1, $id);
             $stmt->execute();
-            // obtener fila recuperada
             return $stmt;
            
         }
