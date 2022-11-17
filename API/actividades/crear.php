@@ -6,11 +6,11 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-AllowHeaders, Authorization, X-Requested-With");
 // obtener conexion de base de datos
-include_once('../confi/conexion.php');
+include_once('../config/conexion.php');
 
 // instanciar el objeto producto
-$conex = new modeloCredencialesDB();
-$db = $conex->conexion();
+$conex = new conexion();
+$db = $conex->obtenerConexion();
 // obtener los datos
 $data = json_decode(file_get_contents("php://input"));
 // asegurar que los datos no esten vacios

@@ -9,7 +9,7 @@
 </head>
 <body>
 <?php
-require_once ("logica/Agenda.php");
+require_once ("class/Agenda.php");
 ?>
 <nav class="nav">
 <ul class="nav_ul">

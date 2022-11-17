@@ -9,12 +9,12 @@ include_once('../config/conexion.php');
 include_once('../obj/Agenda.php');
 
 // inicializar base de datos y objeto producto
-$conex = new modeloCredencialesDB();
-$db = $conex->conexion();
+$conex = new conexion();
+$db = $conex->obtenerConexion();
 
 
 // inicializar objeto
-$Notas = new agenda($db);
+$Notas = new agend($db);
 
 $filtro = isset($_GET['filtro']) ? $_GET['filtro'] : die();
 $opcion = isset($_GET['opcion']) ? $_GET['opcion'] : die();

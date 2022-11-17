@@ -5,16 +5,16 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 // incluir archivos de conexion y objetos
-include_once('../confi/conexion.php');
+include_once('../config/conexion.php');
 include_once('../obj/Agenda.php');
 
 // inicializar base de datos y objeto producto
-$conex = new modeloCredencialesDB();
-$db = $conex->conexion();
+$conex = new conexion();
+$db = $conex->obtenerConexion();
 
 
 // inicializar objeto
-$Notas = new agenda($db);
+$Notas = new agend($db);
 $id = isset($_GET['id']) ? $_GET['id'] : die();
 
 if ($Notas->eliminar_nota($id)) {

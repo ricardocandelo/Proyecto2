@@ -1,27 +1,30 @@
 <?php
     
-    class agenda
-    {
- 
-        private $url_agenda = "http://localhost/proyecto2/api/actividades";
+    class agenda {
+
+        private $url_agenda = "http://localhost/proy2.1/api/actividades";
+        protected $id;
+        protected $titulo;
+        protected $texto;
+        protected $actividad;
+        protected $fecha;
+        protected $rango;
+        protected $rango_final;
+
 
         public function listar_notas(){
-            $ruta = $this->url_agenda . 'leer.php';
-            $data = json_decode(file_get_contents($ruta), true);
+            $ruta = $this->url_agenda . 'listar.php';
+            $data = json_decode(file_get_contents($ruta),true);
             $result = $data["records"];
             return $result;
 
         }
-    
-        public function ver_nota($note){
-            $instruccion = "CALL sp_leer('".$note."')";
-            $consulta=$this->_db->query($instruccion);
-            $resultado=$consulta->fetch_all(MYSQLI_ASSOC);
-            if($resultado){
-                return $resultado;
-                $resultado->close();
-                $this->_db->close();
-            }
+        
+        public function ver_nota(){
+            $ruta = $this->url_agenda . 'leer.php?id=';
+            $data = json_decode(file_get_contents($ruta),true);
+            $result = $data["records"];
+            return $result;
         }
 
         public function nueva_nota($titulo, $texto, $ubicacion, $rango, $actividad, $rango_final){
