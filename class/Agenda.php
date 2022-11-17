@@ -22,8 +22,8 @@
         }
         
         public function ver_nota(){
-            $ruta = $this->url_agenda.'leer.php?id=48';
-            
+            $id =$_GET['id'];
+            $ruta = $this->url_agenda.'leer.php?id='.$id;
             $data = json_decode(file_get_contents($ruta),true);
             $result = $data["records"];
             return $result;

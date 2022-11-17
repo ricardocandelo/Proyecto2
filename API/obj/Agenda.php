@@ -20,20 +20,42 @@
 
         }
         
-        function ver_nota($id){
-            $query = "CALL sp_leer('?')";
+        function ver_nota(){
+            try{
+            $query = "CALL sp_leer(id)";
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(1, $id);
-            $stmt->execute();
+            $stmt->bindParam(1, $this->id);
+            
+                $stmt->execute();
             return $stmt;
+            }catch(PDOException $e){
+            }
+            
            
         }
+        
 
-        function nueva_nota($titulo, $texto, $ubicacion, $rango, $actividad, $rango_final){
-            $instruccion = "CALL sp_nueva_nota(?, ?, ?, ?, ?, ?)";
+        function nueva_nota(){
+            $instruccion = "CALL sp_nueva_nota(titulo=:titulo, texto=:texto, ubicacion=:ubicacion, rango=:rango, tipo_actividad=:tipo_actividad, rango_final=:rango_final)";
             $stmt = $this->_db->prepare($instruccion);
-            $stmt->bind_param("ssssss", $titulo, $texto, $ubicacion, $rango, $actividad, $rango_final);
-            $stmt->execute();
+            $this->titulo = htmlspecialchars(strip_tags($this->tuitulo));
+            $this->texto = htmlspecialchars(strip_tags($this->texto));
+            $this->ubicacion = htmlspecialchars(strip_tags($this->ubicacion));
+            $this->rango = htmlspecialchars(strip_tags($this->rango));
+            $this->tipo_actividad = htmlspecialchars(strip_tags($this->tipo_actividad));
+            $this->rango_final = htmlspecialchars(strip_tags($this->rango_final));
+            // bind values
+            $stmt->bindParam(":titulo", $this->titulo);
+            $stmt->bindParam(":texto", $this->texto);
+            $stmt->bindParam(":ubicacion", $this->ubicacion);
+            $stmt->bindParam(":rango", $this->rango);
+            $stmt->bindParam(":tipo_actividad", $this->tipo_actividad);
+            $stmt->bindParam(":rango_final", $this->rango_final);
+            // execute query
+            if ($stmt->execute()) {
+                return true;
+            }
+            return false;
         }
         
 
